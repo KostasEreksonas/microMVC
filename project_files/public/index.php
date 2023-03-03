@@ -12,6 +12,8 @@
  * Routing
  */
 
+use Core\Router;
+
 require '../Core/Router.php';
 
 $router = new Router();
