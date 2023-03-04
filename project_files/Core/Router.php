@@ -15,10 +15,6 @@ class Router
     {
         $this->routes[$route] = $params;
     }
-    public function getRoutes(): array // Get all the routes from the routing table
-    {
-        return $this->routes;
-    }
     public function match(string $url): bool // Match the route to the routes in the routing table, setting the $params property if a route is found
     {
         foreach ($this->routes as $route => $params) {
@@ -28,6 +24,10 @@ class Router
             }
         }
         return false;
+    }
+    public function getRoutes(): array // Get all the routes from the routing table
+    {
+        return $this->routes;
     }
     public function getParams(): array // Get the currently matched parameters
     {
