@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   web:
-    image: nginx
+    image: iitgdocker/apache:latest
     volumes:
       - ./project:/var/www/html/
     ports:
@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     environment:
-      APACHE_SERVER_NAME: nginx_project
+      APACHE_SERVER_NAME: apache_project
       APPLICATION_ENV: development
 
   db:
@@ -22,7 +22,7 @@ services:
       - ./db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: nginx_db
+      MYSQL_DATABASE: apache_db
       MYSQL_USER: devuser
       MYSQL_PASSWORD: devpass
 
