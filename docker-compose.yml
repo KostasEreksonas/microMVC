@@ -1,16 +1,21 @@
-version: '3.3'
+version: '3.9'
+
 services:
   web:
-    image: iitgdocker/apache:latest
+    image: tautiz/web4study:latest
     volumes:
       - ./project:/var/www/html/
+    user: web:web
     ports:
       - 80:80
-    depends_on:
-      - db
     environment:
-      APACHE_SERVER_NAME: apache_project
+      PHP_IDE_CONFIG: 'serverName=web.local'
+      APACHE_SERVER_NAME: web.local
       APPLICATION_ENV: development
+      APACHE_LOG_DIR: /var/log/apache2
+      APACHE_DOCUMENT_ROOT: /var/www/html
+      APACHE_RUN_USER: web
+      APACHE_RUN_GROUP: web
 
   db:
     image: mysql:latest
