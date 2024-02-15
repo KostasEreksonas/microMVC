@@ -5,6 +5,7 @@
         }
         public function index(){
             $posts = $this->postModel->getPosts();
+            echo var_dump($this->postModel->getPosts());
             $data = [
                 'title' => 'Welcome',
                 'posts' => $posts
