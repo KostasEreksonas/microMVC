@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   web:
-    image: php:8.3-apache
+    build: .
     ports:
       - "80:80"
     depends_on:
@@ -13,6 +13,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: social
+    ports:
+      - "3306:3306"
     volumes:
       - ./mysql_data:/var/lib/mysql
   phpmyadmin:
