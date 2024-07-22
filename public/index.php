@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Front controller
+ */
+
 $action = $_GET["action"];
 $controller = $_GET["controller"];
 
