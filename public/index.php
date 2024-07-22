@@ -1,6 +1,10 @@
 <?php
 
-require "src/controllers/Products.php";
+$action = $_GET["action"];
+$controller = $_GET["controller"];
 
-$controller = new Products;
-$controller->index();
+require "src/controllers/$controller.php";
+
+$controller_object = new $controller; # Instantiate a new controller
+
+$controller_object->$action(); # Choose an action from the controller
