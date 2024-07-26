@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * Front controller
  */
@@ -22,5 +24,14 @@ $router->add("/products", ["controller" => "products", "action" => "index"]);
 $router->add("/", ["controller" => "home", "action" => "index"]);
 $router->add("/{controller}/{action}");
 
-$dispatcher = new Framework\Dispatcher($router);
+$container = new Framework\Container;
+
+$container->set(App\Database::class, function() {
+
+    return new App\Database("db", "product_db", "root", "root");
+
+});
+
+$dispatcher = new Framework\Dispatcher($router, $container);
+
 $dispatcher->handle($path);
