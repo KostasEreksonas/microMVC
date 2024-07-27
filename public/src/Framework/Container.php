@@ -7,6 +7,7 @@ namespace Framework;
 use ReflectionClass;
 use Closure;
 use ReflectionNamedType;
+use InvalidArgumentException;
 
 class Container
 {
@@ -43,19 +44,19 @@ class Container
 
             if ($type === null) {
 
-                exit("Constructor parameter '{$parameter->getName()}' in the $class_name class has no type declaration");
+                throw new InvalidArgumentException("Constructor parameter '{$parameter->getName()}' in the $class_name class has no type declaration");
             }
 
             if ( ! ($type instanceof ReflectionNamedType)) {
 
-                exit("Constructor parameter '{$parameter->getName()}'
+                throw new InvalidArgumentException("Constructor parameter '{$parameter->getName()}'
                 in the $class_name class is an invalid type: '$type'
                 - only single named types supported");
             }
 
             if ($type->isBuiltin()) {
 
-                exit("Unable to resolve contructor parameter '{$parameter->getName()}' of type '$type' in the $class_name class");
+                throw new InvalidArgumentException("Unable to resolve contructor parameter '{$parameter->getName()}' of type '$type' in the $class_name class");
             }
 
             $dependencies[] = $this->get((string) $type);
